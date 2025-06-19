@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleksey Goroshko - Data Analyst Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-logo">
+                    <span data-en="Portfolio" data-ru="Портфолио">Portfolio</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#about" data-en="About" data-ru="О себе">About</a></li>
+                    <li><a href="#skills" data-en="Skills" data-ru="Навыки">Skills</a></li>
+                    <li><a href="#research" data-en="Research" data-ru="Исследования">Research</a></li>
+                    <li><a href="#contacts" data-en="Contacts" data-ru="Контакты">Contacts</a></li>
+                </ul>
+                <button class="lang-toggle" id="langToggle">
+                    <span class="lang-current">EN</span>
+                    <span class="lang-separator">/</span>
+                    <span class="lang-other">RU</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <div class="photo-container">
+                        <div class="photo-placeholder">
+                            <span data-en="Professional Photo" data-ru="Профессиональное фото">Professional Photo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-text">
+                    <h1 data-en="Aleksey Aleksandrovich Goroshko" data-ru="Алексей Александрович Горошко">Aleksey Aleksandrovich Goroshko</h1>
+                    <h2 data-en="Data Analyst" data-ru="Дата-аналитик">Data Analyst</h2>
+                    <p class="location" data-en="Fanipol, Minsk Region" data-ru="Фаниполь, Минская область">Fanipol, Minsk Region</p>
+                    <p class="hero-description" data-en="Data and detail-oriented analyst with experience in optimizing business processes, structuring data, and cross-functional collaboration" data-ru="Аналитик, ориентированный на данные и детали, с опытом оптимизации бизнес-процессов, структурирования данных и межфункционального взаимодействия">
+                        Data and detail-oriented analyst with experience in optimizing business processes, structuring data, and cross-functional collaboration
+                    </p>
+                    <button class="btn btn--primary cv-download" id="cvDownload">
+                        <span data-en="Download CV" data-ru="Скачать резюме">Download CV</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 data-en="Key Achievements" data-ru="Ключевые достижения">Key Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="icon">
+                        <svg viewBox="0 0 80 80" class="achievement-icon" fill="#52641D">
+                            <path d="M20,25 L60,25 L60,55 L20,55 Z M25,30 L25,50 M30,30 L30,50 M35,30 L35,50 M40,30 L40,50 M45,30 L45,50 M50,30 L50,50 M55,30 L55,50 M25,35 L55,35 M25,40 L55,40 M25,45 L55,45"/>
+                            <path d="M15,15 L65,15 L70,20 L70,60 L15,60 Z" fill="none" stroke="#52641D" stroke-width="2"/>
+                            <circle cx="35" cy="20" r="3" fill="#52641D"/>
+                            <polygon points="45,15 50,10 55,15" fill="#52641D"/>
+                        </svg>
+                    </div>
+                    <h3 data-en="30% reduction in data processing time" data-ru="30% сокращение времени обработки данных">30% reduction in data processing time</h3>
+                    <p class="company" data-en="Syberry (2023-2024)" data-ru="Syberry (2023-2024)">Syberry (2023-2024)</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="icon">
+                        <svg viewBox="0 0 80 80" class="achievement-icon" fill="#52641D">
+                            <path d="M40,10 C24,10 11,23 11,39 C11,55 24,68 40,68 C56,68 69,55 69,39 C69,23 56,10 40,10 Z"/>
+                            <path d="M30,35 L35,45 L50,25" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 data-en="20% fewer errors in reporting" data-ru="20% снижение ошибок в отчётности">20% fewer errors in reporting</h3>
+                    <p class="company" data-en="Poultry farm (2019-2023)" data-ru="Птицефабрика (2019-2023)">Poultry farm (2019-2023)</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="icon">
+                        <svg viewBox="0 0 80 80" class="achievement-icon" fill="#52641D">
+                            <circle cx="40" cy="20" r="8"/>
+                            <circle cx="25" cy="45" r="6"/>
+                            <circle cx="55" cy="45" r="6"/>
+                            <circle cx="40" cy="60" r="6"/>
+                            <path d="M40,28 L40,52 M32,36 L48,36 M25,39 L25,51 M55,39 L55,51"/>
+                        </svg>
+                    </div>
+                    <h3 data-en="Managed 4 people as Acting Chief Economist" data-ru="Управление командой из 4 человек">Managed 4 people as Acting Chief Economist</h3>
+                    <p class="company" data-en="Acting Chief Economist (2018-2019)" data-ru="И.о. главного экономиста (2018-2019)">Acting Chief Economist (2018-2019)</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="icon">
+                        <svg viewBox="0 0 80 80" class="achievement-icon" fill="#52641D">
+                            <circle cx="40" cy="40" r="25" fill="none" stroke="#52641D" stroke-width="3"/>
+                            <path d="M40,20 L40,40 L55,40" stroke="#52641D" stroke-width="3" fill="none"/>
+                            <circle cx="40" cy="40" r="3"/>
+                            <path d="M25,25 L30,20 M55,25 L50,20 M55,55 L50,60 M25,55 L30,60"/>
+                        </svg>
+                    </div>
+                    <h3 data-en="AI integration in automation processes" data-ru="Интеграция AI в процессы автоматизации">AI integration in automation processes</h3>
+                    <p class="company" data-en="Syberry & Personal Projects (2023-2024)" data-ru="Syberry и личные проекты (2023-2024)">Syberry & Personal Projects (2023-2024)</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="icon">
+                        <svg viewBox="0 0 80 80" class="achievement-icon" fill="#52641D">
+                            <rect x="15" y="20" width="50" height="40" rx="5" fill="none" stroke="#52641D" stroke-width="3"/>
+                            <path d="M25,30 L35,30 M25,40 L45,40 M25,50 L35,50"/>
+                            <circle cx="55" cy="35" r="3"/>
+                            <path d="M50,45 L60,45 M50,50 L60,50"/>
+                        </svg>
+                    </div>
+                    <h3 data-en="Redesigned payroll system for 500 employees" data-ru="Переделал систему оплаты труда на 500 человек">Redesigned payroll system for 500 employees</h3>
+                    <p class="company" data-en="Enterprise-wide implementation" data-ru="Внедрение на уровне предприятия">Enterprise-wide implementation</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="icon">
+                        <svg viewBox="0 0 80 80" class="achievement-icon" fill="#52641D">
+                            <rect x="10" y="25" width="60" height="35" rx="8" fill="none" stroke="#52641D" stroke-width="3"/>
+                            <circle cx="25" cy="35" r="4"/>
+                            <path d="M35,32 L55,32 M35,38 L60,38 M35,44 L50,44"/>
+                            <circle cx="55" cy="50" r="3"/>
+                            <path d="M20,50 L35,50"/>
+                        </svg>
+                    </div>
+                    <h3 data-en="Administered Discord server for 300 users" data-ru="Администрировал Discord сервер на 300 пользователей">Administered Discord server for 300 users</h3>
+                    <p class="company" data-en="Community management with guides creation" data-ru="Управление сообществом с созданием гайдов">Community management with guides creation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 data-en="Skills Dashboard" data-ru="Панель навыков">Skills Dashboard</h2>
+            <div class="skills-charts">
+                <div class="chart-container">
+                    <h3 data-en="Skills Radar" data-ru="Радар навыков">Skills Radar</h3>
+                    <canvas id="radarChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 data-en="Skills Comparison" data-ru="Сравнение навыков">Skills Comparison</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <h2 data-en="Research Projects" data-ru="Исследовательские проекты">Research Projects</h2>
+            <div class="research-dashboard">
+                <div class="research-header">
+                    <h3 data-en="Profitability Analysis of Top-10 Manufacturing Companies in Minsk Region" data-ru="Анализ рентабельности топ-10 производственных предприятий Минской области">Profitability Analysis of Top-10 Manufacturing Companies in Minsk Region</h3>
+                    <p data-en="2023-2024" data-ru="2023-2024">2023-2024</p>
+                </div>
+                <div class="research-chart">
+                    <canvas id="profitabilityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <div class="contacts-centered">
+                <h2 data-en="Contact Information" data-ru="Контактная информация">Contact Information</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h4 data-en="Email" data-ru="Электронная почта">Email</h4>
+                        <a href="mailto:ejyzybesa@gmail.com">ejyzybesa@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <h4 data-en="Phone" data-ru="Телефон">Phone</h4>
+                        <a href="tel:+375298533717">+375 (29) 853 37 17</a>
+                    </div>
+                    <div class="contact-item">
+                        <h4>LinkedIn</h4>
+                        <a href="https://linkedin.com/in/aleksey-goroshko-258381265" target="_blank">aleksey-goroshko-258381265</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
