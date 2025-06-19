@@ -1,303 +1,619 @@
-// Portfolio Data
-const portfolioData = {
-  technicalSkills: {
-    labels: ["Microsoft Excel", "Анализ данных", "Power BI", "Jira", "SQL", "Python", "Английский"],
-    values: [95, 90, 75, 70, 60, 55, 85]
-  },
-  softSkills: {
-    labels: ["Коммуникация", "Оптимизация процессов", "Быстрое обучение", "Лидерство", "Решение проблем"],
-    values: [95, 95, 95, 90, 90]
-  },
-  chartColors: ['#4A6B3A', '#6B8F52', '#8FB36D', '#B3D68A']
+// Portfolio Application JavaScript
+
+// Language data
+const languageData = {
+    en: {
+        skills: ["Analytical Tools", "Data Visualization", "Programming", "Project Management", "Communication", "Leadership"],
+        companies: ["OAO Rudensk", "OAO INTEGRAL", "Belarusian Metallurgical Works", "Minsk Tractor Works", "OAO BelAZ", "Gomel Chemical Plant", "OAO Naftan", "OAO Grodno Azot", "OAO Belshina", "OAO Atlant"],
+        cvFile: "english-cv.pdf"
+    },
+    ru: {
+        skills: ["Аналитические инструменты", "Визуализация данных", "Программирование", "Управление проектами", "Коммуникация", "Лидерство"],
+        companies: ["ОАО «Руденск»", "ОАО «ИНТЕГРАЛ»", "Белорусский металлургический завод", "Минский тракторный завод", "ОАО «БелАЗ»", "Гомельский химический завод", "ОАО «Нафтан»", "ОАО «Гродно Азот»", "ОАО «Белшина»", "ОАО «Атлант»"],
+        cvFile: "russian-cv.pdf"
+    }
 };
+
+// Skills and profitability data from JSON
+const skillsValues = [95, 90, 85, 80, 90, 85];
+const profitabilityData = [16, 14, 10, 8, 7, 6, 5, 4, 3, 2];
+
+// Chart instances
+let radarChart = null;
+let barChart = null;
+let profitabilityChart = null;
+
+// Current language - CRITICAL: START WITH ENGLISH
+let currentLanguage = 'en';
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
-  initCharts();
-  setupSmoothScrolling();
-  setupInteractiveElements();
-  
-  // Observe elements as they enter viewport
-  setupScrollAnimations();
-  
-  // Activate navbar based on scroll position
-  window.addEventListener('scroll', debounce(updateActiveNavItem, 100));
-});
-
-// Initialize Charts using Chart.js
-function initCharts() {
-  // Bar Chart for Technical Skills
-  const technicalSkillsCtx = document.getElementById('technicalSkillsChart');
-  if (technicalSkillsCtx) {
-    new Chart(technicalSkillsCtx, {
-      type: 'bar',
-      data: {
-        labels: portfolioData.technicalSkills.labels,
-        datasets: [{
-          label: 'Уровень навыка (%)',
-          data: portfolioData.technicalSkills.values,
-          backgroundColor: portfolioData.chartColors[0],
-          borderColor: portfolioData.chartColors[1],
-          borderWidth: 1,
-          borderRadius: 5,
-          barThickness: 20,
-          maxBarThickness: 30,
-          hoverBackgroundColor: portfolioData.chartColors[2]
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: '#2A2A2A',
-            titleColor: '#FFFFFF',
-            bodyColor: '#D0D0D0',
-            borderColor: '#4A6B3A',
-            borderWidth: 1,
-            cornerRadius: 6,
-            padding: 10
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            },
-            ticks: {
-              color: '#D0D0D0'
-            }
-          },
-          x: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              color: '#D0D0D0'
-            }
-          }
-        }
-      }
-    });
-  }
-
-  // Radar Chart for Soft Skills
-  const softSkillsCtx = document.getElementById('softSkillsChart');
-  if (softSkillsCtx) {
-    new Chart(softSkillsCtx, {
-      type: 'radar',
-      data: {
-        labels: portfolioData.softSkills.labels,
-        datasets: [{
-          label: 'Уровень навыка (%)',
-          data: portfolioData.softSkills.values,
-          backgroundColor: 'rgba(74, 107, 58, 0.2)',
-          borderColor: '#4A6B3A',
-          borderWidth: 2,
-          pointBackgroundColor: '#6B8F52',
-          pointBorderColor: '#FFFFFF',
-          pointHoverBackgroundColor: '#8FB36D',
-          pointBorderWidth: 2,
-          pointRadius: 5,
-          pointHoverRadius: 7
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          r: {
-            beginAtZero: true,
-            max: 100,
-            ticks: {
-              display: false,
-              stepSize: 20
-            },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            },
-            angleLines: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            },
-            pointLabels: {
-              color: '#D0D0D0',
-              font: {
-                size: 12,
-                weight: 'bold'
-              }
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: '#2A2A2A',
-            titleColor: '#FFFFFF',
-            bodyColor: '#D0D0D0',
-            borderColor: '#4A6B3A',
-            borderWidth: 1,
-            cornerRadius: 6,
-            padding: 10
-          }
-        }
-      }
-    });
-  }
-}
-
-// Setup smooth scrolling for navigation links
-function setupSmoothScrolling() {
-  const navLinks = document.querySelectorAll('a[href^="#"]');
-  
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      
-      if (targetSection) {
-        const offsetTop = targetSection.offsetTop - 80; // Adjusting for header
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-}
-
-// Update active navigation link based on scroll position
-function updateActiveNavItem() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-menu a');
-  
-  let currentSection = '';
-  
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    const sectionHeight = section.offsetHeight;
+    console.log('DOM loaded, initializing application...');
     
-    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-      currentSection = section.getAttribute('id');
-    }
-  });
-  
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${currentSection}`) {
-      link.classList.add('active');
-      link.style.color = '#4A6B3A';
-    } else {
-      link.style.color = '#FFFFFF';
-    }
-  });
-}
-
-// Setup interactive elements
-function setupInteractiveElements() {
-  // Add hover effects to cards
-  const cards = document.querySelectorAll('.achievement-card, .gaming-card, .contact-card, .timeline-item');
-  
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-8px)';
-    });
+    // ВАЖНО: Сначала устанавливаем английский язык
+    currentLanguage = 'en';
     
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = '';
-    });
-  });
-
-  // Add click effects to achievement cards
-  const achievementCards = document.querySelectorAll('.achievement-card');
-  
-  achievementCards.forEach(card => {
-    card.addEventListener('click', function() {
-      // Add pulse animation
-      this.style.transform = 'scale(0.95)';
-      
-      setTimeout(() => {
-        this.style.transform = '';
-      }, 150);
-    });
-  });
-}
-
-// Setup animations for elements as they enter viewport
-function setupScrollAnimations() {
-  const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        fadeInObserver.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  // Observe elements for fade-in animation
-  const animatedElements = document.querySelectorAll(
-    '.achievement-card, .gaming-card, .contact-card, .timeline-item, .chart-container'
-  );
-  
-  animatedElements.forEach((element, index) => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(30px)';
-    element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    fadeInObserver.observe(element);
-  });
-}
-
-// Utility: Debounce function to limit the rate at which a function can fire
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-// Update fixed navbar on scroll
-window.addEventListener('scroll', function() {
-  const navbar = document.querySelector('.navbar');
-  if (!navbar) return;
-  
-  if (window.scrollY > 50) {
-    navbar.style.background = 'rgba(18, 18, 18, 0.98)';
-    navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.4)';
-  } else {
-    navbar.style.background = 'rgba(18, 18, 18, 0.95)';
-    navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.3)';
-  }
-});
-
-// Error handling for chart initialization
-window.addEventListener('error', function(e) {
-  if (e.message && e.message.includes('Chart')) {
-    console.warn('Chart loading error:', e.message);
+    // Инициализируем компоненты
+    initializeLanguageToggle();
+    initializeCVDownload();
+    initializeSmoothScrolling();
+    initializeScrollEffects();
+    initializeHoverEffects();
+    initializeProfessionalPhoto();
     
-    // Try to reinitialize charts
+    // Устанавливаем правильное содержимое для английского языка
+    updateLanguageContent();
+    
+    // Инициализируем диаграммы с задержкой
     setTimeout(() => {
-      if (typeof Chart !== 'undefined') {
-        console.log('Retrying chart initialization...');
-        initCharts();
-      }
-    }, 2000);
-  }
+        initializeCharts();
+    }, 300);
+});
+
+// Language switching functionality
+function initializeLanguageToggle() {
+    const langToggle = document.getElementById('langToggle');
+    const langCurrent = langToggle.querySelector('.lang-current');
+    const langOther = langToggle.querySelector('.lang-other');
+    
+    // Устанавливаем начальное состояние кнопки для английского языка
+    langCurrent.textContent = 'EN';
+    langOther.textContent = 'RU';
+    
+    langToggle.addEventListener('click', function() {
+        console.log('Language toggle clicked, current:', currentLanguage);
+        
+        // Переключаем язык
+        currentLanguage = currentLanguage === 'en' ? 'ru' : 'en';
+        
+        // Обновляем текст кнопки
+        if (currentLanguage === 'en') {
+            langCurrent.textContent = 'EN';
+            langOther.textContent = 'RU';
+        } else {
+            langCurrent.textContent = 'RU';
+            langOther.textContent = 'EN';
+        }
+        
+        // Обновляем весь контент
+        updateLanguageContent();
+        
+        // Обновляем диаграммы
+        updateCharts();
+        
+        // Визуальная обратная связь
+        langToggle.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            langToggle.style.transform = 'scale(1)';
+        }, 100);
+        
+        console.log('Language switched to:', currentLanguage);
+    });
+}
+
+// Update all text content based on current language
+function updateLanguageContent() {
+    const elements = document.querySelectorAll('[data-en][data-ru]');
+    
+    elements.forEach(element => {
+        const enText = element.getAttribute('data-en');
+        const ruText = element.getAttribute('data-ru');
+        
+        if (currentLanguage === 'en') {
+            element.textContent = enText;
+        } else {
+            element.textContent = ruText;
+        }
+    });
+    
+    // Обновляем заголовок документа и язык
+    document.documentElement.lang = currentLanguage;
+    if (currentLanguage === 'en') {
+        document.title = 'Aleksey Goroshko - Data Analyst Portfolio';
+    } else {
+        document.title = 'Алексей Горошко - Портфолио Дата-аналитика';
+    }
+}
+
+// КРИТИЧЕСКИ ВАЖНАЯ ФУНКЦИЯ CV DOWNLOAD
+function initializeCVDownload() {
+    const cvDownloadBtn = document.getElementById('cvDownload');
+    
+    cvDownloadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        console.log('Download CV clicked, current language:', currentLanguage);
+        
+        // Определяем имя файла в зависимости от текущего языка
+        const filename = currentLanguage === 'ru' ? 'russian-cv.pdf' : 'english-cv.pdf';
+        
+        console.log('Downloading file:', filename);
+        
+        // Показываем уведомление с информацией о файле
+        const message = currentLanguage === 'en' 
+            ? `CV download started! File: ${filename}` 
+            : `Загрузка резюме началась! Файл: ${filename}`;
+        
+        showNotification(message);
+        
+        // Создаем временный элемент ссылки для скачивания
+        const link = document.createElement('a');
+        link.href = filename;
+        link.download = filename;
+        link.style.display = 'none';
+        
+        // Добавляем в DOM, кликаем и удаляем
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Визуальная обратная связь на кнопке
+        cvDownloadBtn.style.transform = 'scale(0.95)';
+        cvDownloadBtn.style.opacity = '0.8';
+        
+        setTimeout(() => {
+            cvDownloadBtn.style.transform = 'scale(1)';
+            cvDownloadBtn.style.opacity = '1';
+        }, 200);
+    });
+}
+
+// Initialize all charts
+function initializeCharts() {
+    console.log('Initializing charts...');
+    
+    if (typeof Chart === 'undefined') {
+        console.error('Chart.js not loaded');
+        return;
+    }
+    
+    try {
+        createRadarChart();
+        createBarChart();
+        createProfitabilityChart();
+        console.log('All charts initialized successfully');
+    } catch (error) {
+        console.error('Error initializing charts:', error);
+    }
+}
+
+// Create radar chart
+function createRadarChart() {
+    const canvas = document.getElementById('radarChart');
+    if (!canvas) {
+        console.error('Radar chart canvas not found');
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    
+    if (radarChart) {
+        radarChart.destroy();
+    }
+    
+    radarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: languageData[currentLanguage].skills,
+            datasets: [{
+                label: currentLanguage === 'en' ? 'Skills Level' : 'Уровень навыков',
+                data: skillsValues,
+                backgroundColor: 'rgba(82, 100, 29, 0.2)',
+                borderColor: '#52641D',
+                borderWidth: 3,
+                pointBackgroundColor: '#52641D',
+                pointBorderColor: '#ffffff',
+                pointBorderWidth: 2,
+                pointRadius: 6,
+                pointHoverRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 14,
+                            weight: '500'
+                        }
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    grid: {
+                        color: '#333333'
+                    },
+                    angleLines: {
+                        color: '#333333'
+                    },
+                    pointLabels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 11,
+                            weight: '500'
+                        }
+                    },
+                    ticks: {
+                        color: '#808080',
+                        backdropColor: 'transparent',
+                        stepSize: 20
+                    }
+                }
+            }
+        }
+    });
+    
+    console.log('Radar chart created');
+}
+
+// Create bar chart
+function createBarChart() {
+    const canvas = document.getElementById('barChart');
+    if (!canvas) {
+        console.error('Bar chart canvas not found');
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    
+    if (barChart) {
+        barChart.destroy();
+    }
+    
+    barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: languageData[currentLanguage].skills,
+            datasets: [{
+                label: currentLanguage === 'en' ? 'Skills Level (%)' : 'Уровень навыков (%)',
+                data: skillsValues,
+                backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F', '#DB4545'],
+                borderColor: '#52641D',
+                borderWidth: 2,
+                borderRadius: 8,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 14,
+                            weight: '500'
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: {
+                        color: '#333333'
+                    },
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            weight: '500'
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        color: '#333333'
+                    },
+                    ticks: {
+                        color: '#ffffff',
+                        maxRotation: 45,
+                        font: {
+                            weight: '500',
+                            size: 11
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
+    console.log('Bar chart created');
+}
+
+// Create profitability chart
+function createProfitabilityChart() {
+    const canvas = document.getElementById('profitabilityChart');
+    if (!canvas) {
+        console.error('Profitability chart canvas not found');
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    
+    if (profitabilityChart) {
+        profitabilityChart.destroy();
+    }
+    
+    profitabilityChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: languageData[currentLanguage].companies,
+            datasets: [{
+                label: currentLanguage === 'en' ? 'Profitability (%)' : 'Рентабельность (%)',
+                data: profitabilityData,
+                backgroundColor: '#52641D',
+                borderColor: '#6b7f2a',
+                borderWidth: 2,
+                borderRadius: 8,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 14,
+                            weight: '500'
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: '#333333'
+                    },
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            weight: '500'
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        color: '#333333'
+                    },
+                    ticks: {
+                        color: '#ffffff',
+                        maxRotation: 45,
+                        font: {
+                            weight: '500',
+                            size: 10
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
+    console.log('Profitability chart created');
+}
+
+// Update charts when language changes
+function updateCharts() {
+    console.log('Updating charts for language:', currentLanguage);
+    
+    if (radarChart) {
+        radarChart.data.labels = languageData[currentLanguage].skills;
+        radarChart.data.datasets[0].label = currentLanguage === 'en' ? 'Skills Level' : 'Уровень навыков';
+        radarChart.update('active');
+    }
+    
+    if (barChart) {
+        barChart.data.labels = languageData[currentLanguage].skills;
+        barChart.data.datasets[0].label = currentLanguage === 'en' ? 'Skills Level (%)' : 'Уровень навыков (%)';
+        barChart.update('active');
+    }
+    
+    if (profitabilityChart) {
+        profitabilityChart.data.labels = languageData[currentLanguage].companies;
+        profitabilityChart.data.datasets[0].label = currentLanguage === 'en' ? 'Profitability (%)' : 'Рентабельность (%)';
+        profitabilityChart.update('active');
+    }
+}
+
+// Initialize smooth scrolling for navigation
+function initializeSmoothScrolling() {
+    const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Show notification message
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    
+    let bgColor = '#52641D';
+    if (type === 'warning') bgColor = '#A84B2F';
+    if (type === 'error') bgColor = '#C0152F';
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: linear-gradient(135deg, ${bgColor}, ${bgColor}dd);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 2000;
+        font-weight: 500;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+        max-width: 300px;
+        word-wrap: break-word;
+        font-size: 14px;
+    `;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Анимация появления
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Удаление через 4 секунды
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 4000);
+}
+
+// Add scroll effects for header
+function initializeScrollEffects() {
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(10, 10, 10, 0.98)';
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.8)';
+        } else {
+            header.style.background = 'rgba(10, 10, 10, 0.98)';
+            header.style.boxShadow = 'none';
+        }
+    });
+}
+
+// Add hover effects for achievement cards
+function initializeHoverEffects() {
+    const achievementCards = document.querySelectorAll('.achievement-card');
+    
+    achievementCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Enhanced contact item interactions
+    const contactItems = document.querySelectorAll('.contact-item');
+    
+    contactItems.forEach(item => {
+        const link = item.querySelector('a');
+        
+        item.addEventListener('click', function(e) {
+            if (e.target !== link) {
+                link.click();
+            }
+        });
+        
+        // Add ripple effect on click
+        item.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(82, 100, 29, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                pointer-events: none;
+                animation: ripple 0.6s ease-out;
+            `;
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.parentNode.removeChild(ripple);
+                }
+            }, 600);
+        });
+    });
+}
+
+// Professional photo handling
+function initializeProfessionalPhoto() {
+    const photoContainer = document.querySelector('.photo-container');
+    const placeholder = document.querySelector('.photo-placeholder');
+    
+    // Check if professional photo exists
+    const img = new Image();
+    img.onload = function() {
+        // Photo exists, replace placeholder
+        placeholder.style.display = 'none';
+        const professionalPhoto = document.createElement('img');
+        professionalPhoto.src = 'professional-photo.jpg';
+        professionalPhoto.alt = currentLanguage === 'en' ? 'Aleksey Goroshko' : 'Алексей Горошко';
+        professionalPhoto.className = 'professional-photo';
+        photoContainer.appendChild(professionalPhoto);
+    };
+    img.onerror = function() {
+        // Photo doesn't exist, keep placeholder
+        console.log('Professional photo not found, using placeholder');
+    };
+    img.src = 'professional-photo.jpg';
+}
+
+// Handle window resize for charts
+window.addEventListener('resize', function() {
+    if (radarChart) radarChart.resize();
+    if (barChart) barChart.resize();
+    if (profitabilityChart) profitabilityChart.resize();
+});
+
+// Make sure Chart.js is loaded before initializing
+window.addEventListener('load', function() {
+    if (typeof Chart !== 'undefined' && (!radarChart || !barChart || !profitabilityChart)) {
+        console.log('Chart.js loaded, re-initializing charts...');
+        initializeCharts();
+    }
 });
