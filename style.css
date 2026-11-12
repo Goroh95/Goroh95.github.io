@@ -58,6 +58,7 @@ body { margin: 0; background: #f5f2e8; }
   }
   @container (max-width: 590px) {
     #career-page .career-intro { min-height: 385px; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    #career-page .career-intro .career-actions { column-gap: 12px; }
     #career-page .career-portrait { width: min(74%, 238px); }
     #career-page .career-art { width: 152%; }
     #career-page .career-metrics { grid-template-columns: minmax(0, 1fr); }
