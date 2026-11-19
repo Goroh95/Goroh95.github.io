@@ -17,6 +17,7 @@
         <div class="career-top">
           <a class="career-monogram" href="#career-page" aria-label="В начало страницы">АГ</a>
           <nav class="career-nav" aria-label="Разделы сайта">
+            <a href="#dashboards">Проекты</a>
             <a href="#experience">Опыт</a>
             <a href="#contact">Контакты</a>
           </nav>
@@ -71,6 +72,59 @@
         </div>
       </div>
     </section>
+    <section class="career-section career-projects" id="dashboards" aria-labelledby="career-full-dashboards">
+      <div class="career-wrap">
+        <h2 id="career-full-dashboards">Проекты Tableau</h2>
+        <p class="career-project-intro">Дашборды Tableau Public воссоздают задачи из моей практики на демонстрационных данных.</p>
+        <div class="career-project-grid">
+          <article class="career-project">
+            <h3>Энергозатраты и технический баланс</h3>
+            <figure>
+              <a class="career-project-image" href="./previews/energy.png" target="_blank" rel="noopener" aria-label="Увеличить превью — Энергозатраты и технический баланс">
+                <img src="./previews/energy.png" width="1365" height="926" loading="lazy" alt="Финансовый дашборд: план, факт и факторы перерасхода">
+              </a>
+              <figcaption>Февраль 2026 · все ресурсы и площадки</figcaption>
+            </figure>
+            <a class="career-project-link" href="https://public.tableau.com/views/energy-costs/sheet17?:showVizHome=no" target="_blank" rel="noopener" aria-label="Открыть в Tableau Public — Энергозатраты и технический баланс">Открыть в Tableau Public <span aria-hidden="true">↗</span></a>
+            <div class="career-project-copy">
+              <p><strong>Результат для бизнеса.</strong> Дашборд помог заказчику отслеживать изменения энергозатрат и разбирать перерасход бюджета от общего итога до площадки, ресурса и отдельного счёта.</p>
+              <p><strong>Мой вклад.</strong> Написал SQL для витрины PostgreSQL, которая сводит показания счётчиков, счета и бюджет по площадкам, ресурсам и месяцам. Выгрузил <strong>4 872 строки по 36 площадкам</strong> в CSV и собрал в Tableau два связанных представления: финансовый план-факт и техническую сверку.</p>
+              <p><strong>Что показывает демо.</strong> По всему набору данных перерасход <strong>+4,31 млн BYN</strong> раскладывается на вклад объёма (+2,36 млн BYN), тарифа (+1,94 млн BYN) и расхождений по счетам (+6 683 BYN). На технической странице можно сверить счета с показаниями счётчиков и увидеть, где счёт отсутствует.</p>
+            </div>
+          </article>
+          <article class="career-project">
+            <h3>Зарплатный рынок</h3>
+            <figure>
+              <a class="career-project-image" href="./previews/salary.png" target="_blank" rel="noopener" aria-label="Увеличить превью — Зарплатный рынок">
+                <img src="./previews/salary.png" width="1499" height="946" loading="lazy" alt="Срез по оплате специалистов Middle: 10 сотрудников, 30% ниже рынка">
+              </a>
+              <figcaption>Июнь 2025 · сопровождение платежей · Middle</figcaption>
+            </figure>
+            <a class="career-project-link" href="https://public.tableau.com/views/salary-market-month-styled/sheet10?:showVizHome=no" target="_blank" rel="noopener" aria-label="Открыть в Tableau Public — Зарплатный рынок">Открыть в Tableau Public <span aria-hidden="true">↗</span></a>
+            <div class="career-project-copy">
+              <p><strong>Результат для бизнеса.</strong> Банк получил инструмент для выявления команд и грейдов, где оплата отставала от рынка. Руководители могли опираться на рыночные медианы при пересмотре зарплат и отслеживать, насколько оплата соответствует стратегии банка.</p>
+              <p><strong>Мой вклад.</strong> Разработал дашборд в Power BI. В Power Query настроил ежемесячное объединение штатных расписаний и подключил рыночные ориентиры для сравнения зарплат по направлениям и грейдам.</p>
+              <p><strong>Что показывает демо.</strong> В Tableau на данных из Excel можно перейти от месячного среза на <strong>200 сотрудников</strong> к отдельной команде и грейду. В команде сопровождения платежей <strong>3 из 10 специалистов грейда Middle</strong> оказались ниже целевого диапазона в 90–110% от рыночной медианы.</p>
+            </div>
+          </article>
+          <article class="career-project">
+            <h3>Резерв отпусков</h3>
+            <figure>
+              <a class="career-project-image" href="./previews/vacation.png" target="_blank" rel="noopener" aria-label="Увеличить превью — Резерв отпусков">
+                <img src="./previews/vacation.png" width="1499" height="1076" loading="lazy" alt="Декабрьский срез резерва отпусков: 6 748 дней, снижение на 17% к январю">
+              </a>
+              <figcaption>Декабрь 2026 · в днях отпуска · все подразделения</figcaption>
+            </figure>
+            <a class="career-project-link" href="https://public.tableau.com/views/vacation-reserve/ExecutiveDashboard?:showVizHome=no" target="_blank" rel="noopener" aria-label="Открыть в Tableau Public — Резерв отпусков">Открыть в Tableau Public <span aria-hidden="true">↗</span></a>
+            <div class="career-project-copy">
+              <p><strong>Результат для бизнеса.</strong> Анализ показал, что основная часть денежного резерва отпусков приходилась на экспертов и руководителей. Компания учла это при пересмотре стратегии снижения резерва и наладила регулярный мониторинг его динамики.</p>
+              <p><strong>Мой вклад.</strong> На Python смоделировал <strong>12 месяцев данных по 370 сотрудникам</strong> и сформировал Excel-файл. Через Tableau Hyper API подготовил экстракт для дашборда. Для проверки данных и расчётов использовал Python и контрольные SQL-запросы.</p>
+              <p><strong>Что показывает демо.</strong> Дашборд Tableau сравнивает план и факт в днях и BYN. По дням выделяются производство и логистика, по сумме — корпоративное управление. В декабрьском срезе остаток в днях <strong>на 17% ниже январского уровня</strong>.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
     <section class="career-section career-experience" id="experience" aria-labelledby="career-full-experience">
       <div class="career-wrap">
         <h2 id="career-full-experience">Опыт работы</h2>
@@ -81,15 +135,6 @@
           <li><p class="career-period">Дек 2019 — авг 2023</p><div><h3>1-я Минская птицефабрика</h3><p class="career-job">Экономист-аналитик</p><p>Автоматизировал производственную отчётность и рассчитывал влияние новой системы оплаты труда на зарплаты 500+ сотрудников.</p></div></li>
           <li><p class="career-period">Авг 2018 — ноя 2019</p><div><h3>ППЗ «Белорусский»</h3><p class="career-job">Экономист по труду и зарплате / и. о. главного экономиста</p><p>Автоматизировал отчётность по труду и оплате. Во время реорганизации координировал работу четырёх экономистов.</p></div></li>
         </ol>
-      </div>
-    </section>
-    <section class="career-section career-projects" id="dashboards" hidden aria-labelledby="career-full-dashboards">
-      <div class="career-wrap">
-        <h2 id="career-full-dashboards">Дашборды</h2>
-        <div class="career-project-grid">
-          <article><div class="career-project-image" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><h3>Дашборд 1</h3></article>
-          <article><div class="career-project-image" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><h3>Дашборд 2</h3></article>
-        </div>
       </div>
     </section>
     <section class="career-section career-background" aria-labelledby="career-full-background">
