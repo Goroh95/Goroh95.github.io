@@ -1,0 +1,115 @@
+#career-page .career-projects {
+  background: #e3ebda;
+}
+
+#career-page .career-case-intro {
+  margin-top: 12px;
+  color: var(--muted-ink);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+#career-page .career-case-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(18px, 2.6cqi, 30px);
+  margin-top: 26px;
+}
+
+#career-page .career-case {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  padding: clamp(14px, 2.2cqi, 27px);
+  border: 1px solid #b2c4ae;
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+#career-page .career-case h3 {
+  color: var(--ink);
+  font: 700 clamp(20px, 2.3cqi, 28px)/1.18 'Inter', 'Segoe UI', sans-serif;
+}
+
+#career-page .career-case p {
+  color: var(--muted-ink);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+#career-page .career-case strong {
+  color: var(--ink);
+}
+
+#career-page .career-case-media {
+  align-self: start;
+  min-width: 0;
+}
+
+#career-page .career-case-media figure {
+  margin: 0;
+}
+
+#career-page .career-case-media figcaption {
+  margin-top: 8px;
+  color: var(--muted-ink);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#career-page .career-case-image {
+  display: block;
+  border: 1px solid #b2c4ae;
+  border-radius: 4px;
+  background: #e3ebda;
+  cursor: zoom-in;
+}
+
+#career-page .career-case-image img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+#career-page .career-case-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: var(--paper);
+  background: var(--forest);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#career-page .career-case-link:hover {
+  color: var(--forest);
+  background: var(--mint);
+}
+
+#career-page .career-case-details {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+@container (min-width: 820px) {
+  #career-page .career-case {
+    grid-template: "media title" auto
+                   "media outcome" auto
+                   "media details" 1fr / minmax(0, 1.08fr) minmax(0, 1fr);
+    column-gap: clamp(24px, 3cqi, 38px);
+    align-items: start;
+  }
+
+  #career-page .career-case h3 { grid-area: title; }
+  #career-page .career-case-outcome { grid-area: outcome; }
+  #career-page .career-case-media { grid-area: media; }
+  #career-page .career-case-details { grid-area: details; }
+}

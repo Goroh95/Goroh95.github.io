@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#102d23">
   <title>Aleksey Goroshko — Data Analyst</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../tableau-projects-v2.css">
   <link rel="alternate" hreflang="ru" href="../">
   <link rel="alternate" hreflang="en" href="./">
 </head>
@@ -75,49 +76,55 @@
     <section class="career-section career-projects" id="dashboards" aria-labelledby="career-full-dashboards">
       <div class="career-wrap">
         <h2 id="career-full-dashboards">Tableau Projects</h2>
-        <p class="career-project-intro">The Tableau Public dashboards use synthetic data to illustrate problems I’ve worked on. The dashboard interfaces are in Russian.</p>
-        <div class="career-project-grid">
-          <article class="career-project">
+        <p class="career-case-intro">The Tableau Public dashboards use synthetic data to illustrate problems I’ve worked on. The dashboard interfaces are in Russian.</p>
+        <div class="career-case-list">
+          <article class="career-case">
             <h3>Energy Costs &amp; Technical Balance</h3>
-            <figure>
-              <a class="career-project-image" href="../previews/energy.png" target="_blank" rel="noopener" aria-label="Enlarge preview — Energy Costs &amp; Technical Balance">
-                <img src="../previews/energy.png" width="1365" height="926" loading="lazy" alt="Financial dashboard with actuals, budget and drivers of the overrun">
-              </a>
-              <figcaption>February 2026 · all utilities and sites</figcaption>
-            </figure>
-            <a class="career-project-link" href="https://public.tableau.com/views/energy-costs/sheet17?:showVizHome=no" target="_blank" rel="noopener" aria-label="View on Tableau Public — Energy Costs &amp; Technical Balance">View on Tableau Public <span aria-hidden="true">↗</span></a>
-            <div class="career-project-copy">
-              <p><strong>Business outcome.</strong> The dashboard helped the client track changes in energy costs and investigate budget overruns from the overall total down to individual sites, utility types, and invoices.</p>
+            <p class="career-case-outcome"><strong>Business outcome.</strong> The dashboard helped the client track changes in energy costs and investigate budget overruns from the overall total down to individual sites, utility types, and invoices.</p>
+            <div class="career-case-media">
+              <figure>
+                <a class="career-case-image" href="../previews/energy.png" target="_blank" rel="noopener" aria-label="Enlarge preview — Energy Costs &amp; Technical Balance">
+                  <img src="../previews/energy.png" width="1365" height="926" loading="lazy" alt="Financial dashboard with actuals, budget and drivers of the overrun">
+                </a>
+                <figcaption>February 2026 · all utilities and sites</figcaption>
+              </figure>
+              <a class="career-case-link" href="https://public.tableau.com/views/energy-costs/sheet17?:showVizHome=no" target="_blank" rel="noopener" aria-label="View on Tableau Public — Energy Costs &amp; Technical Balance">View on Tableau Public <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="career-case-details">
               <p><strong>My contribution.</strong> I wrote the SQL for a PostgreSQL data mart that brings together meter readings, invoices, and budgets by site, utility type, and month. I exported <strong>4,872 rows across 36 sites</strong> to CSV and built two linked Tableau views for budget variance analysis and meter reconciliation.</p>
               <p><strong>What the demo shows.</strong> Across the full dataset, the <strong>BYN 4.31 million budget overrun</strong> breaks down into consumption volume (BYN 2.36 million), tariffs (BYN 1.94 million), and invoice discrepancies (BYN 6,683). The technical view lets users reconcile invoices against meter readings and identify missing invoices.</p>
             </div>
           </article>
-          <article class="career-project">
+          <article class="career-case">
             <h3>Salary Benchmarking</h3>
-            <figure>
-              <a class="career-project-image" href="../previews/salary.png" target="_blank" rel="noopener" aria-label="Enlarge preview — Salary Benchmarking">
-                <img src="../previews/salary.png" width="1499" height="946" loading="lazy" alt="Salary benchmarking overview for 200 employees by division, business area, and job grade">
-              </a>
-              <figcaption>June 2025 · all groups · 200 employees</figcaption>
-            </figure>
-            <a class="career-project-link" href="https://public.tableau.com/views/salary-market-month-styled/sheet10?:showVizHome=no" target="_blank" rel="noopener" aria-label="View on Tableau Public — Salary Benchmarking">View on Tableau Public <span aria-hidden="true">↗</span></a>
-            <div class="career-project-copy">
-              <p><strong>Business outcome.</strong> The bank gained a way to identify teams and job grades where pay lagged behind the market. Managers could use market medians to inform pay reviews and track alignment with the bank’s compensation strategy.</p>
+            <p class="career-case-outcome"><strong>Business outcome.</strong> The bank gained a way to identify teams and job grades where pay lagged behind the market. Managers could use market medians to inform pay reviews and track alignment with the bank’s compensation strategy.</p>
+            <div class="career-case-media">
+              <figure>
+                <a class="career-case-image" href="../previews/salary.png" target="_blank" rel="noopener" aria-label="Enlarge preview — Salary Benchmarking">
+                  <img src="../previews/salary.png" width="1499" height="946" loading="lazy" alt="Salary benchmarking overview for 200 employees by division, business area, and job grade">
+                </a>
+                <figcaption>June 2025 · all groups · 200 employees</figcaption>
+              </figure>
+              <a class="career-case-link" href="https://public.tableau.com/views/salary-market-month-styled/sheet10?:showVizHome=no" target="_blank" rel="noopener" aria-label="View on Tableau Public — Salary Benchmarking">View on Tableau Public <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="career-case-details">
               <p><strong>My contribution.</strong> I built a Power BI dashboard, used Power Query to combine monthly staffing files, and linked them to market benchmarks by business area and job grade.</p>
               <p><strong>What the demo shows.</strong> The Tableau dashboard uses Excel data and lets viewers drill down from a monthly view of <strong>200 employees</strong> to a specific team and grade. In the payment support team, <strong>3 of 10 mid-level specialists</strong> fell below the target range of 90–110% of the market median.</p>
             </div>
           </article>
-          <article class="career-project">
+          <article class="career-case">
             <h3>Vacation Reserve Analysis</h3>
-            <figure>
-              <a class="career-project-image" href="../previews/vacation.png" target="_blank" rel="noopener" aria-label="Enlarge preview — Vacation Reserve Analysis">
-                <img src="../previews/vacation.png" width="1499" height="1076" loading="lazy" alt="December leave reserve: 6,748 days, down 17% from January">
-              </a>
-              <figcaption>December 2026 · leave days · all departments</figcaption>
-            </figure>
-            <a class="career-project-link" href="https://public.tableau.com/views/vacation-reserve/ExecutiveDashboard?:showVizHome=no" target="_blank" rel="noopener" aria-label="View on Tableau Public — Vacation Reserve Analysis">View on Tableau Public <span aria-hidden="true">↗</span></a>
-            <div class="career-project-copy">
-              <p><strong>Business outcome.</strong> The analysis showed that specialists and managers accounted for most of the leave reserve by value. The company used this finding to revise its strategy for reducing the reserve and began monitoring it regularly.</p>
+            <p class="career-case-outcome"><strong>Business outcome.</strong> The analysis showed that specialists and managers accounted for most of the leave reserve by value. The company used this finding to revise its strategy for reducing the reserve and began monitoring it regularly.</p>
+            <div class="career-case-media">
+              <figure>
+                <a class="career-case-image" href="../previews/vacation.png" target="_blank" rel="noopener" aria-label="Enlarge preview — Vacation Reserve Analysis">
+                  <img src="../previews/vacation.png" width="1499" height="1076" loading="lazy" alt="December leave reserve: 6,748 days, down 17% from January">
+                </a>
+                <figcaption>December 2026 · leave days · all departments</figcaption>
+              </figure>
+              <a class="career-case-link" href="https://public.tableau.com/views/vacation-reserve/ExecutiveDashboard?:showVizHome=no" target="_blank" rel="noopener" aria-label="View on Tableau Public — Vacation Reserve Analysis">View on Tableau Public <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="career-case-details">
               <p><strong>My contribution.</strong> I used Python to model <strong>12 months of data for 370 employees</strong> and generate an Excel file. I built the dashboard extract with Tableau Hyper API and used Python and SQL checks to validate the data and calculations.</p>
               <p><strong>What the demo shows.</strong> The Tableau dashboard compares planned and actual balances in days and BYN. Production and logistics stand out by days, while corporate management ranks highest by value. In the December view, the balance in days is <strong>17% below its January level</strong>.</p>
             </div>
